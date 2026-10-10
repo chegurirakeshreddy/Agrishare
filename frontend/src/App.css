@@ -1,0 +1,127 @@
+
+.app {
+  min-height: 100vh;
+  color: #203329;
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 7%;
+  background: white;
+}
+
+.navbar h2 {
+  color: #267346;
+}
+
+nav {
+  display: flex;
+  gap: 24px;
+}
+
+nav a {
+  color: #203329;
+  text-decoration: none;
+}
+
+button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #267346;
+  color: white;
+  cursor: pointer;
+}
+
+.hero {
+  padding: 100px 8%;
+  background: #eaf5e8;
+}
+
+.tagline {
+  color: #267346;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.hero h1 {
+  font-size: clamp(36px, 5vw, 60px);
+  line-height: 1.15;
+}
+
+.description {
+  max-width: 580px;
+  line-height: 1.8;
+  color: #526357;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+
+.secondary {
+  background: white;
+  color: #267346;
+  border: 1px solid #267346;
+}
+
+.features {
+  padding: 60px 7%;
+  text-align: center;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 30px;
+}
+
+.card {
+  padding: 28px 20px;
+  border: 1px solid #e0e9e0;
+  border-radius: 14px;
+  background: white;
+}
+
+.card span {
+  font-size: 36px;
+}
+
+.card p {
+  color: #647568;
+  line-height: 1.6;
+}
+
+footer {
+  padding: 25px;
+  text-align: center;
+  background: #203329;
+  color: white;
+}
+
+@media (max-width: 700px) {
+  .navbar {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  nav {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding: 60px 7%;
+  }
+}
