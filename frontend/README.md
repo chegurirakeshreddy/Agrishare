@@ -79,6 +79,12 @@ npm run dev
 
 Open the local URL printed by Vite in the terminal.
 
+## Production Deployment
+
+- Deploy the backend to a publicly reachable HTTPS URL.
+- Set the Vercel frontend environment variable `VITE_API_URL` to that backend's base URL (for example, `https://your-backend.example.com`, without `/api`), then redeploy the frontend.
+- Set the backend environment variable `CORS_ALLOWED_ORIGINS` to the frontend origin, such as `https://agrishare-tau.vercel.app`. Separate multiple origins with commas.
+
 ## Important Notes
 
 - Crop recommendations currently use rule-based filtering and ranking.
