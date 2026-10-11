@@ -1,0 +1,58 @@
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+!.env.sample
+application-local.properties
+application-local.yml
+application-local.yaml
+secrets/
+*.pem
+*.key
+
+# Java / Maven / Spring Boot
+target/
+*.class
+*.jar
+*.war
+*.log
+hs_err_pid*
+
+# Node.js / React / Vite
+node_modules/
+dist/
+.vite/
+coverage/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Build and tool caches
+.cache/
+.tmp/
+temp/
+*.tmp
+
+# IDE and editor files
+.idea/
+.vscode/
+*.iml
+.project
+.classpath
+.settings/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Local database exports and backups
+*.sql.bak
+*.dump
+*.bak
+*.backup
+
+# Local configuration overrides
+application-local.properties
+application-local.yml
+application-local.yaml
