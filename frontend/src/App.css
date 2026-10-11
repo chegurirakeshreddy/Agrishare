@@ -1,4 +1,17 @@
 
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #f7faf5;
+}
+
 .app {
   min-height: 100vh;
   color: #203329;
@@ -9,12 +22,18 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 20px;
   padding: 18px 7%;
   background: white;
+  box-shadow: 0 2px 12px #2033290d;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .navbar h2 {
   color: #267346;
+  margin: 0;
 }
 
 nav {
@@ -25,20 +44,41 @@ nav {
 nav a {
   color: #203329;
   text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+nav a:hover {
+  color: #267346;
 }
 
 button {
   padding: 12px 20px;
   border: none;
-  border-radius: 8px;
+  border-radius: 9px;
   background: #267346;
   color: white;
+  font-weight: 600;
   cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+button:hover {
+  background: #195a35;
+  transform: translateY(-1px);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .hero {
   padding: 100px 8%;
-  background: #eaf5e8;
+  background:
+    linear-gradient(90deg, #eaf5e8 0%, #eaf5e8e8 48%, #eaf5e830 100%),
+    url("https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1800&q=85")
+    center/cover;
 }
 
 .tagline {
@@ -50,12 +90,14 @@ button {
 .hero h1 {
   font-size: clamp(36px, 5vw, 60px);
   line-height: 1.15;
+  max-width: 720px;
 }
 
 .description {
   max-width: 580px;
   line-height: 1.8;
   color: #526357;
+  font-size: 17px;
 }
 
 .actions {
@@ -72,31 +114,112 @@ button {
 }
 
 .features {
-  padding: 60px 7%;
+  padding: 65px 7%;
   text-align: center;
+  scroll-margin-top: 90px;
+}
+
+.features > h2 {
+  font-size: clamp(26px, 3vw, 36px);
+  margin-bottom: 12px;
+  color: #203d2a;
+}
+
+.features > p {
+  color: #647568;
+  line-height: 1.7;
 }
 
 .cards {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 22px;
-  margin-top: 30px;
+  gap: 25px;
+  margin-top: 32px;
+  text-align: left;
+  align-items: stretch;
 }
 
 .card {
-  padding: 28px 20px;
-  border: 1px solid #e0e9e0;
-  border-radius: 14px;
+  min-width: 0;
+  padding: 0 0 22px;
+  overflow: hidden;
+  border: 1px solid #e2eae0;
+  border-radius: 18px;
   background: white;
+  box-shadow: 0 5px 20px #2033290a;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 30px #20332917;
 }
 
 .card span {
+  display: inline-block;
   font-size: 36px;
+  margin: 20px 22px 0;
+}
+
+.card h3 {
+  margin: 14px 22px 10px;
+  font-size: 21px;
+  color: #203d2a;
 }
 
 .card p {
+  margin: 8px 22px;
   color: #647568;
   line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.card p strong {
+  color: #344d3b;
+}
+
+.account-form,
+.crop-form {
+  max-width: 480px;
+  margin: 30px auto;
+  padding: 26px;
+  border: 1px solid #e0e9e0;
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 8px 28px #2033290d;
+  text-align: left;
+}
+
+.account-form form,
+.crop-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.account-form input,
+.account-form select,
+.crop-form input,
+.crop-form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #d5e0d4;
+  border-radius: 8px;
+  background: #fcfefb;
+  font: inherit;
+}
+
+.account-form input:focus,
+.account-form select:focus,
+.crop-form input:focus,
+.crop-form textarea:focus {
+  outline: 2px solid #9bc9a5;
+  border-color: #267346;
+}
+
+.crop-form textarea {
+  min-height: 90px;
+  resize: vertical;
 }
 
 footer {
@@ -106,22 +229,397 @@ footer {
   color: white;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 900px) {
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hero {
+    padding: 75px 7%;
+  }
+
   .navbar {
-    flex-wrap: wrap;
-    gap: 12px;
+    padding: 16px 5%;
   }
 
   nav {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    position: relative;
     flex-wrap: wrap;
-    gap: 12px;
+  }
+
+  .navbar > div {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  nav {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 12px 18px;
+  }
+
+  .hero {
+    padding: 55px 6%;
+    background-position: center;
+  }
+
+  .hero h1 {
+    font-size: 38px;
+  }
+
+  .description {
+    font-size: 15px;
+  }
+
+  .features {
+    padding: 45px 5%;
   }
 
   .cards {
     grid-template-columns: 1fr;
+    gap: 18px;
   }
 
-  .hero {
-    padding: 60px 7%;
+  .account-form,
+  .crop-form {
+    margin: 20px 5%;
+    padding: 20px;
   }
 }
+
+.crop-card {
+  padding: 0;
+}
+
+.crop-image {
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  background: #eaf5e8;
+}
+
+.crop-card-content {
+  padding: 4px 0 20px;
+}
+
+.crop-card-content h3 {
+  margin-top: 14px;
+}
+
+@media (max-width: 600px) {
+  .crop-image {
+    height: 240px;
+  }
+}
+
+.crop-filters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  max-width: 900px;
+  margin: 28px auto 16px;
+}
+
+.crop-search,
+.location-filter {
+  min-width: 200px;
+  padding: 13px 15px;
+  border: 1px solid #d5e0d4;
+  border-radius: 9px;
+  background: white;
+  color: #203329;
+  font: inherit;
+}
+
+.crop-search {
+  flex: 1;
+}
+
+.crop-search:focus,
+.location-filter:focus {
+  outline: 2px solid #9bc9a5;
+  border-color: #267346;
+}
+
+.no-results {
+  margin: 30px auto;
+  padding: 24px;
+  border-radius: 12px;
+  background: white;
+  color: #647568;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .crop-filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .crop-search,
+  .location-filter,
+  .crop-filters button {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+/* Equipment rental marketplace */
+
+.equipment-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.equipment-icon {
+  min-height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #e5f3df, #c8e4b9);
+  font-size: 76px;
+}
+
+.equipment-card-content {
+  padding: 18px;
+}
+
+.equipment-card-content h3 {
+  margin-top: 0;
+  color: #245b35;
+}
+
+.equipment-card-content p {
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.equipment-status {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 20px;
+  background: #e4f5e7;
+  color: #246b38;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.equipment-card .equipment-status {
+  margin-bottom: 0;
+}
+
+@media (max-width: 600px) {
+  .equipment-icon {
+    min-height: 120px;
+    font-size: 60px;
+  }
+
+  .equipment-card-content {
+    padding: 14px;
+  }
+}
+
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid #dce8dc;
+}
+
+.booking-form input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cbd8cb;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.booking-section {
+  padding: 30px 0;
+}
+
+.booking-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin: 20px 0 30px;
+}
+
+.booking-card {
+  padding: 18px;
+  border: 1px solid #dce8dc;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.booking-card h3 {
+  margin-top: 0;
+}
+
+.booking-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.booking-message {
+  padding: 12px;
+  border-radius: 8px;
+  background: #edf7ed;
+}
+
+/* Farmer Dashboard */
+.dashboard-section {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 35px 24px;
+  scroll-margin-top: 100px;
+}
+
+.dashboard-heading {
+  margin-bottom: 28px;
+}
+
+.dashboard-heading h2 {
+  margin: 8px 0;
+  color: #204d32;
+  font-size: 2rem;
+}
+
+.dashboard-heading > p:last-child {
+  color: #627267;
+  line-height: 1.7;
+}
+
+.dashboard-loading {
+  padding: 20px 0;
+  color: #42634d;
+}
+
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.dashboard-stat {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  min-width: 0;
+  padding: 24px 18px;
+  background: #ffffff;
+  border: 1px solid #e0ebdf;
+  border-radius: 16px;
+  box-shadow: 0 5px 18px rgba(27, 66, 38, 0.07);
+}
+
+.dashboard-stat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #edf7e9;
+  font-size: 25px;
+}
+
+.dashboard-stat p {
+  margin: 2px 0 8px;
+  color: #5b6b60;
+  font-size: 0.9rem;
+}
+
+.dashboard-stat h3 {
+  margin: 0 0 12px;
+  color: #204d32;
+  font-size: 2rem;
+}
+
+.dashboard-stat a {
+  color: #287342;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.dashboard-stat a:hover {
+  text-decoration: underline;
+}
+
+.dashboard-shortcuts {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 26px;
+  padding: 22px;
+  border-radius: 14px;
+  background: #f1f7ed;
+}
+
+.dashboard-shortcuts h3 {
+  width: 100%;
+  margin: 0 0 4px;
+  color: #204d32;
+}
+
+.dashboard-shortcuts button {
+  cursor: pointer;
+}
+
+.welcome-message {
+  text-align: center;
+  padding: 10px;
+}
+
+#dashboard,
+#crops,
+#resources,
+#bookings,
+#about {
+  scroll-margin-top: 100px;
+}
+
+@media (max-width: 900px) {
+  .dashboard-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 550px) {
+  .dashboard-section {
+    padding: 24px 16px;
+  }
+
+  .dashboard-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-stat {
+    padding: 20px 16px;
+  }
+
+  .dashboard-shortcuts {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .dashboard-shortcuts button {
+    width: 100%;
+  }
+}
+
