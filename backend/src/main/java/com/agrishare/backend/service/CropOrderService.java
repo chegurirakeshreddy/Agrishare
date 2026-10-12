@@ -146,6 +146,45 @@ public class CropOrderService {
                 .toList();
     }
 
+    @Transactional
+    public Map<String, Object> updateOrderStatus(
+            Long orderId, String newStatus, String email) {
+        if (!"APPROVED".equals(newStatus) && !"REJECTED".equals(newStatus)) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    "Status must be APPROVED or REJECTED");
+        }
+
+        CropOrder order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "Crop order not found"));
+
+        AppUser farmer = userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "User not found"));
+
+        if (!"FARMER".equalsIgnoreCase(String.valueOf(farmer.getRole()))) {
+            throw new ResponseStatusException(
+                    HttpStatus.FORBIDDEN,
+                    "Only farmers can update crop orders");
+        }
+
+        if (!order.getCrop().getFarmer().getId().equals(farmer.getId())) {
+            throw new ResponseStatusException(
+                    HttpStatus.FORBIDDEN,
+                    "Only the crop owner can update this order");
+        }
+
+        if (!"PENDING".equals(order.getStatus())) {
+            throw new ResponseStatusException(
+                    HttpStatus.CONFLICT,
+                    "This order has already been processed");
+        }
+
+        order.setStatus(newStatus);
+        return toMap(orderRepository.save(order));
+    }
+
     private Map<String, Object> toMap(CropOrder order) {
         Map<String, Object> result = new LinkedHashMap<>();
 

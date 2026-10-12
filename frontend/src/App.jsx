@@ -1078,8 +1078,24 @@ async function handleAddCrop(e) {
 
 
 <section id="farming-assistant" className="section">
-  <h2>🌱 AI Farming Assistant</h2>
-  <p>
+  <h2
+     style={{
+      maxWidth: "700px",
+      margin: "20px auto",
+      padding: "20px",
+      border: "1px solid #ddd",
+      borderRadius: "12px"
+    }}
+
+  >🌱 AI Farming Assistant</h2>
+  <p 
+   style={{
+      maxWidth: "700px",
+      margin: "20px auto",
+      padding: "20px",
+      border: "1px solid #ddd",
+      borderRadius: "12px"
+    }}>
     Ask questions about crops, soil, irrigation, pests, and fertilizers.
   </p>
 
@@ -1420,7 +1436,15 @@ async function handleAddCrop(e) {
 
         {/* Equipment bookings */}
         {user && (
-          <section className="booking-section" id="bookings">
+          <section className="booking-section" id="bookings"
+             style={{
+      maxWidth: "700px",
+      margin: "20px auto",
+      padding: "20px",
+      border: "1px solid #ddd",
+      borderRadius: "12px"
+    }}
+          >
             <h2>My Bookings</h2>
 
             {myBookings.length === 0 ? (
@@ -1473,7 +1497,15 @@ async function handleAddCrop(e) {
 
         {/* Step 5: Buyer crop order history */}
         {user?.role === "BUYER" && (
-          <section className="booking-section" id="crop-orders">
+          <section className="booking-section" id="crop-orders"
+             style={{
+      maxWidth: "700px",
+      margin: "20px auto",
+      padding: "20px",
+      border: "1px solid #ddd",
+      borderRadius: "12px"
+    }}
+          >
             <h2>My Crop Orders</h2>
             <button type="button" className="secondary" onClick={() => loadCropOrders("BUYER")}>
               Refresh Orders
@@ -1501,7 +1533,15 @@ async function handleAddCrop(e) {
 
         {/* Step 6: Farmer received crop orders */}
         {user?.role === "FARMER" && (
-          <section className="booking-section" id="crop-orders">
+          <section className="booking-section" id="crop-orders"
+           style={{
+      maxWidth: "700px",
+      margin: "20px auto",
+      padding: "20px",
+      border: "1px solid #ddd",
+      borderRadius: "12px"
+    }}
+          >
             <h2>Crop Orders Received</h2>
             <button type="button" className="secondary" onClick={() => loadCropOrders("FARMER")}>
               Refresh Orders

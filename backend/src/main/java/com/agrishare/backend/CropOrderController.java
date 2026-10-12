@@ -47,4 +47,16 @@ public class CropOrderController {
 
         return orderService.getOrdersReceived(authentication.getName());
     }
+
+    @PatchMapping("/{orderId}/status")
+    public Map<String, Object> updateOrderStatus(
+            @PathVariable Long orderId,
+            @RequestBody Map<String, String> request,
+            Authentication authentication) {
+
+        return orderService.updateOrderStatus(
+                orderId,
+                request.get("status"),
+                authentication.getName());
+    }
 }
